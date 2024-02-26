@@ -8,10 +8,35 @@
             href="assets/library/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     </head>
     <body>
-        <canvas id="personaje" width="140" height="160"></canvas>
+        <div class="container-fluid w-50 h-75 p-2 border">
+            <div class="row p-0 m-0 border border-black">
+                <div class="row p-0 m-0">
+                    <div class="col-12 text-center p-0 m-0">
+                        <canvas id="personaje" width="140" height="160"></canvas>
+                    </div>
+                </div>
+                <div class="row p-0 m-0 overflow-hidden">
+                    <div class="col-12 p-0 m-0">
+                        <img id="piso" class="position-relative" src="assets/img/escenario/piso.png">
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center m-4">
+                <div class="col-4">
+                    <button class="btn btn-success" id="correr">Correr</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-danger" id="parar">Parar</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-warning" id="saltar">Saltar</button>
+                </div>
+            </div>
+        </div>
 
-        <script src="assets/js/script.js"></script>
-        <script
-            src="assets/library/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     </body>
+
+    <script src="assets/js/script.js"></script>
+    <script
+        src="assets/library/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
 </html>
