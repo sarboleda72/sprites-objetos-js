@@ -14,7 +14,7 @@ class SpriteAnimator {
         this.spriteY = 0; // Posición inicial del sprite en el eje Y
         this.animate = this.animate.bind(this);
     }
-    
+
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -48,7 +48,7 @@ class SpriteAnimator {
             position--;
             piso.style.left = position + 'px';
 
-            if (position <= -(piso.width - 600)) {
+            if (position <= -(piso.width - 1400)) {
                 position = 0;
             }
 
