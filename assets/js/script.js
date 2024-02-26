@@ -1,60 +1,51 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+class SpriteAnimator {
+    constructor(canvasId, spriteSrc, spriteWidth, spriteHeight, numFrames, animationSpeed) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext("2d");
+        this.spriteImage = new Image();
+        this.spriteImage.src = spriteSrc;
+        this.spriteWidth = spriteWidth;
+        this.spriteHeight = spriteHeight;
+        this.numFrames = numFrames;
+        this.currentFrame = 1;
+        this.frameCount = 0;
+        this.animationSpeed = animationSpeed;
+        this.spriteX = 0; // Posición inicial del sprite en el eje X
+        this.spriteY = 0; // Posición inicial del sprite en el eje Y
+        this.animate = this.animate.bind(this);
+    }
 
-// Carga la imagen del sprite
-const spriteImage = new Image();
-spriteImage.src = "assets/img/sprites/megaman.png";
+    startAnimation() {
+        this.animate();
+    }
 
-// Dimensiones del sprite
-const spriteWidth = 200;
-const spriteHeight = 200;
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-// Posición inicial del sprite
-let spriteX = 0;
-let spriteY = 0;
+        this.ctx.drawImage(
+            this.spriteImage,
+            this.currentFrame * this.spriteWidth,
+            this.spriteY,
+            this.spriteWidth,
+            this.spriteHeight,
+            this.spriteX,
+            0,
+            this.spriteWidth,
+            this.spriteHeight
+        );
 
-// Número de fotogramas en la fila
-const numFrames = 5;
+        this.frameCount++;
 
-// Índice del fotograma actual
-let currentFrame = 0;
+        if (this.frameCount >= this.animationSpeed) {
+            this.currentFrame = (this.currentFrame + 1) % this.numFrames;
+            this.frameCount = 0;
+        }
 
-// Contador de fotogramas
-let frameCount = 0;
-
-// Velocidad de animación (cuanto mayor sea el número, más lenta será la animación)
-const animationSpeed = 5; // Ajusta este valor según la velocidad deseada
-
-// Función para animar el sprite
-function animate() {
-  // Borrar el lienzo
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Dibujar el fotograma actual del sprite
-  ctx.drawImage(
-    spriteImage,
-    currentFrame * spriteWidth,
-    spriteY,
-    spriteWidth,
-    spriteHeight,
-    spriteX,
-    0,
-    spriteWidth,
-    spriteHeight
-  );
-
-  // Incrementar el contador de fotogramas
-  frameCount++;
-
-  // Si el contador de fotogramas alcanza la velocidad deseada, avanzar al siguiente fotograma
-  if (frameCount >= animationSpeed) {
-    currentFrame = (currentFrame + 1) % numFrames;
-    frameCount = 0; // Reiniciar el contador
-  }
-
-  // Solicitar el siguiente ciclo de animación
-  requestAnimationFrame(animate);
+        requestAnimationFrame(this.animate);
+    }
 }
 
-// Iniciar la animación
-animate();
+const spriteAnimator = new SpriteAnimator("personaje", "assets/img/sprites/megaman-correr.png", 140, 160, 7, 10);
+
+spriteAnimator.startAnimation();
+
