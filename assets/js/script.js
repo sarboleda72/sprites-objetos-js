@@ -14,11 +14,7 @@ class SpriteAnimator {
         this.spriteY = 0; // Posición inicial del sprite en el eje Y
         this.animate = this.animate.bind(this);
     }
-
-    startAnimation() {
-        this.animate();
-    }
-
+    
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -70,11 +66,11 @@ const pararPersonaje = document.getElementById("parar");
 let stopAnimation = false;
 document.addEventListener('DOMContentLoaded', function () {
     const spriteAnimator = new SpriteAnimator("personaje", "assets/img/sprites/megaman-parado.png", 140, 160, 3, 10);
-    spriteAnimator.startAnimation();
+    spriteAnimator.animate();
 });
 correrPersonaje.addEventListener('click', function () {
     const spriteAnimator = new SpriteAnimator("personaje", "assets/img/sprites/megaman-correr.png", 140, 160, 7, 10);
-    spriteAnimator.startAnimation();
+    spriteAnimator.animate();
     stopAnimation = false;
     spriteAnimator.moveFloor();
 
@@ -82,11 +78,11 @@ correrPersonaje.addEventListener('click', function () {
 
 pararPersonaje.addEventListener('click', function () {
     const spriteAnimator = new SpriteAnimator("personaje", "assets/img/sprites/megaman-parado.png", 140, 160, 3, 10, true);
-    spriteAnimator.startAnimation();
+    spriteAnimator.animate();
     stopAnimation = true;
 });
 
 saltarPersonaje.addEventListener('click', function () {
     const spriteAnimator = new SpriteAnimator("personaje", "assets/img/sprites/megaman-saltar.png", 140, 205, 3, 10);
-    spriteAnimator.startAnimation();
+    spriteAnimator.animate();
 });
