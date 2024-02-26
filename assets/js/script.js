@@ -10,16 +10,11 @@ class SpriteAnimator {
         this.currentFrame = 1;
         this.frameCount = 0;
         this.animationSpeed = animationSpeed;
-        this.spriteX = 0; // Posición inicial del sprite en el eje X
-        this.spriteY = 0; // Posición inicial del sprite en el eje Y
-        this.animate = this.animate.bind(this);
+        this.spriteX = 0;
+        this.spriteY = 0; 
     }
 
     startAnimation() {
-        this.animate();
-    }
-
-    animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.drawImage(
